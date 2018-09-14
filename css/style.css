@@ -1,0 +1,26 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 50px auto;
+}
+
+.container {
+  width:800px;
+  height:600px;
+  margin: 5% auto;
+  background: #999;
+  border-radius: 1em;
+  position: relative;
+}
+
+#character {
+  height:60px;
+  width:60px;
+  background: lime;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.btn-container {
+  text-align: center;
+}
