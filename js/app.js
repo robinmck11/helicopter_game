@@ -33,24 +33,30 @@ $(document).ready(function() {
 
       // start at half board height
       xPos: 50,
-      yPos: board.height / 2,
+      yPos: (board.height / 2) - ($("#character").height() / 2),
 
       // Future proofing
 
-      setxPos: function() {
-        xPos+=1;
+      setxPos: function(value) {
+        this.xPos+=value;
       },
 
-      setyPos: function() {
-        yPos+=1;
+      setyPos: function(value) {
+        this.yPos+=value;
       },
     }
 
-    console.log(board.width);
-    console.log(board.height);
+    /*
+      Draws the character
+    */
 
-    console.log("Helicopter xposition: " + helicopter.xPos);
-    console.log("Helicopter yposition: " + helicopter.yPos);
+    function drawCharacter(){
+      $("#character").css({"left": helicopter.xPos + "px",
+                  "top": helicopter.yPos + "px"
+                });
+    }
+
+    drawCharacter();
 
 
 });
