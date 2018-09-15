@@ -1,5 +1,41 @@
 $(document).ready(function() {
 
+  var gameStarted = false;
+
+  var interval;
+
+  var timeOutMouseDown
+  var timeOutMouseUp;
+  var clicker = $('#container');
+
+  clicker.mousedown(function(){
+
+    gameStarted = true;
+
+    clearInterval(timeOutMouseUp);
+
+    timeOutMouseDown = setInterval(function(){
+        console.log("GOING UP");
+        helicopter.yPos-=1;
+        drawCharacter();
+    }, 10);
+
+    return false;
+  });
+
+  clicker.mouseup(function(){
+
+    clearInterval(timeOutMouseDown);
+
+    timeOutMouseUp = setInterval(function(){
+      console.log("GOING DOWN");
+      helicopter.yPos+=1;
+      drawCharacter();
+    }, 10);
+
+    return false;
+  });
+
   /*
     Board
       - Attributes
@@ -30,20 +66,9 @@ $(document).ready(function() {
     */
 
     var helicopter = {
-
       // start at half board height
       xPos: 50,
       yPos: (board.height / 2) - ($("#character").height() / 2),
-
-      // Future proofing
-
-      setxPos: function(value) {
-        this.xPos+=value;
-      },
-
-      setyPos: function(value) {
-        this.yPos+=value;
-      },
     }
 
     /*
