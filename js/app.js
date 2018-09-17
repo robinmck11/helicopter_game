@@ -1,19 +1,17 @@
 $(document).ready(function() {
 
-  var gameStarted = false;
-
   var interval;
 
-  var timeOutMouseDown
+  var timeOutMouseDown;
   var timeOutMouseUp;
 
   $('#container').mousedown(function(){
 
-    gameStarted = true;
-
     clearInterval(timeOutMouseUp);
 
     timeOutMouseDown = setInterval(function(){
+
+        colider();
         helicopter.yPos-=1;
         drawCharacter();
         updateObstacle();
@@ -23,10 +21,10 @@ $(document).ready(function() {
   });
 
   $('#container').mouseup(function(){
-
     clearInterval(timeOutMouseDown);
 
     timeOutMouseUp = setInterval(function(){
+      colider();
       helicopter.yPos+=1;
       drawCharacter();
       updateObstacle();
@@ -38,10 +36,7 @@ $(document).ready(function() {
   var board = {
     width: $("#container").width(),
     height: $("#container").height(),
-    // top: $("#container").offset().top,
     left: $("#container").offset().left,
-    // right: $("#container").offset().left + $("#container").width(),
-    // bottom: this.top + this.height,
   }
 
   var helicopter = {
@@ -54,13 +49,8 @@ $(document).ready(function() {
 
     width : $("#obstacle").width(),
     height : $("#obstacle").height(),
-    left : $("#obstacle").offset().left,
-
-    // random between top of board and (boardheight - height of the obstacle.)
 
     xPos : board.width - $("#obstacle").width(),
-
-    // Calculate y start
 
      yPos : 0,
 
@@ -86,6 +76,30 @@ $(document).ready(function() {
       obstacle.xPos-=1;
       drawObstacle();
 
+    }
+  }
+
+  function colider(){
+
+    // Character
+
+    var leftch = $("#character").offset().left;
+    var topch = $("#character").offset().top;
+    var rightch = $("#character").offset().left + $("#character").width();
+    var bottomch = $("#character").offset().top + $("#character").height();
+
+
+    // Obstacle
+
+    var leftob = $("#obstacle").offset().left;
+    var topob = $("#obstacle").offset().top;
+    var rightob = $("#obstacle").offset().left + $("#obstacle").width();
+    var bottomob = $("#obstacle").offset().top + $("#obstacle").height();
+
+
+    if (helicopter.yPos <= 0 || helicopter.yPos >= board.height - $("#character").height()
+        || ( (rightch == leftob) && (bottomch < bottomob) && (topch > topob) )) {
+          // restart the game
     }
   }
 
