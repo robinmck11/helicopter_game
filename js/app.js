@@ -14,7 +14,6 @@ $(document).ready(function() {
     clearInterval(timeOutMouseUp);
 
     timeOutMouseDown = setInterval(function(){
-        console.log("GOING UP");
         helicopter.yPos-=1;
         drawCharacter();
         updateObstacle();
@@ -28,7 +27,6 @@ $(document).ready(function() {
     clearInterval(timeOutMouseDown);
 
     timeOutMouseUp = setInterval(function(){
-      console.log("GOING DOWN");
       helicopter.yPos+=1;
       drawCharacter();
       updateObstacle();
@@ -41,14 +39,14 @@ $(document).ready(function() {
     width: $("#container").width(),
     height: $("#container").height(),
     // top: $("#container").offset().top,
-    // left: $("#container").offset().left,
+    left: $("#container").offset().left,
     // right: $("#container").offset().left + $("#container").width(),
     // bottom: this.top + this.height,
   }
 
   var helicopter = {
     // start at half board height
-    xPos: 50,
+    xPos: 80,
     yPos: (board.height / 2) - ($("#character").height() / 2),
   }
 
@@ -56,6 +54,7 @@ $(document).ready(function() {
 
     width : $("#obstacle").width(),
     height : $("#obstacle").height(),
+    left : $("#obstacle").offset().left,
 
     // random between top of board and (boardheight - height of the obstacle.)
 
@@ -63,19 +62,31 @@ $(document).ready(function() {
 
     // Calculate y start
 
-     yPos : Math.floor(Math.random() * (board.height - $("#obstacle").height())),
+     yPos : 0,
 
   }
 
   function drawObstacle(){
     $("#obstacle").css({"left": obstacle.xPos + "px",
                         "top": obstacle.yPos + "px"
-                       });
+                      });
   }
 
   function updateObstacle(){
-    obstacle.xPos-=1;
-    drawObstacle();
+
+    if (obstacle.xPos <= 0) {
+      // reset position of obstacle
+
+      obstacle.xPos = board.width - $("#obstacle").width(),
+
+      obstacle.yPos = Math.floor(Math.random() * (board.height - $("#obstacle").height()))
+    }
+    else{
+      // Update position and draw the obstacle
+      obstacle.xPos-=1;
+      drawObstacle();
+
+    }
   }
 
     /*
@@ -92,7 +103,6 @@ $(document).ready(function() {
   drawCharacter();
   drawObstacle();
   // console.log(Math.floor(Math.random() * (board.height - obstacle.height)));
-  console.log(obstacle.xPos);
 
 
 });
