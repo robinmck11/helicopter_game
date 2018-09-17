@@ -5,6 +5,8 @@ $(document).ready(function() {
   var timeOutMouseDown;
   var timeOutMouseUp;
 
+  var count = 0;
+  var score = 0;
   var lost = false;
 
   $('#container').mousedown(function(){
@@ -14,9 +16,12 @@ $(document).ready(function() {
     timeOutMouseDown = setInterval(function(){
 
         colider();
-        helicopter.yPos-=1;
+        helicopter.yPos-=2;
         drawCharacter();
         updateObstacle();
+        score++;
+        $("#score").html("Score: " + score);
+
     }, 5);
 
     return false;
@@ -27,9 +32,12 @@ $(document).ready(function() {
 
     timeOutMouseUp = setInterval(function(){
       colider();
-      helicopter.yPos+=1;
+      helicopter.yPos+=2;
       drawCharacter();
       updateObstacle();
+      score++;
+      $("#score").html("Score: " + score);
+
     }, 5);
 
     return false;
@@ -75,7 +83,7 @@ $(document).ready(function() {
     }
     else{
       // Update position and draw the obstacle
-      obstacle.xPos-=1;
+      obstacle.xPos-=3;
       drawObstacle();
 
     }
