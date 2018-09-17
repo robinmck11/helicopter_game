@@ -5,6 +5,8 @@ $(document).ready(function() {
   var timeOutMouseDown;
   var timeOutMouseUp;
 
+  var lost = false;
+
   $('#container').mousedown(function(){
 
     clearInterval(timeOutMouseUp);
@@ -100,6 +102,7 @@ $(document).ready(function() {
     if (helicopter.yPos <= 0 || helicopter.yPos >= board.height - $("#character").height()
         || ( (rightch == leftob) && (bottomch < bottomob) && (topch > topob) )) {
           // restart the game
+          console.log("COLLIDED");
     }
   }
 
@@ -116,6 +119,7 @@ $(document).ready(function() {
 
   drawCharacter();
   drawObstacle();
+
   // console.log(Math.floor(Math.random() * (board.height - obstacle.height)));
 
 
