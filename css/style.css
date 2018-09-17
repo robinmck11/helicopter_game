@@ -5,11 +5,13 @@ body {
 }
 
 .container {
-  width:800px;
-  height:600px;
+  width:700px;
+  height:500px;
   margin: 5% auto;
-  background: #999;
+  background: #000;
   border-radius: 1em;
+  border-top:50px solid #73F440;
+  border-bottom:50px solid #73F440;
   position: relative;
 }
 

@@ -6,9 +6,8 @@ $(document).ready(function() {
 
   var timeOutMouseDown
   var timeOutMouseUp;
-  var clicker = $('#container');
 
-  clicker.mousedown(function(){
+  $('#container').mousedown(function(){
 
     gameStarted = true;
 
@@ -18,12 +17,12 @@ $(document).ready(function() {
         console.log("GOING UP");
         helicopter.yPos-=1;
         drawCharacter();
-    }, 10);
+    }, 5);
 
     return false;
   });
 
-  clicker.mouseup(function(){
+  $('#container').mouseup(function(){
 
     clearInterval(timeOutMouseDown);
 
@@ -31,45 +30,36 @@ $(document).ready(function() {
       console.log("GOING DOWN");
       helicopter.yPos+=1;
       drawCharacter();
-    }, 10);
+    }, 5);
 
     return false;
   });
 
-  /*
-    Board
-      - Attributes
-        - width
-        -height
-        ...
-      - Behaviours
-        - ...
-  */
-
   var board = {
     width: $("#container").width(),
     height: $("#container").height(),
+    top:
+    bottom:
+    left:
+    right:
+  }
+
+  var helicopter = {
+    // start at half board height
+    xPos: 50,
+    yPos: (board.height / 2) - ($("#character").height() / 2),
+  }
+
+  var obsticle = {
+    width: 60,
+    height: 150,
+
+    // random between top of board and (boardheight - height of the obstacle.)
+
+    posYStart:
   }
 
 
-    /*
-      Helicopter
-        - Attributes
-          - xPos
-          - yPos
-          - width
-          -height
-          ...
-        - Behaviours
-          - move down
-          - move up
-    */
-
-    var helicopter = {
-      // start at half board height
-      xPos: 50,
-      yPos: (board.height / 2) - ($("#character").height() / 2),
-    }
 
     /*
       Draws the character
