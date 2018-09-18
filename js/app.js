@@ -58,7 +58,6 @@ $(document).ready(function() {
     else {
         $("#character").attr("src","images/heli-" + spriteCounter + ".png");
         spriteCounter++;
-        console.log("animated" + spriteCounter);
       }
 
 
@@ -109,7 +108,19 @@ $(document).ready(function() {
     }
     else{
       // Update position and draw the obstacle
-      obstacle.xPos-=3;
+      switch (level) {
+        case 1:
+          obstacle.xPos-=2;
+          break;
+        case 2:
+          obstacle.xPos-=3;
+          break;
+        case 3:
+          obstacle.xPos-=4;
+          break;
+        default:
+
+      }
       drawObstacle();
 
     }
