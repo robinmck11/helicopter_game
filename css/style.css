@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   text-align: center;
   margin: 50px auto;
+  background-color: #364859;
 }
 
 .container {
@@ -32,4 +33,9 @@ body {
 
 .btn-container {
   text-align: center;
+}
+
+h1, h2{
+  color:white;
+  font-family: 'Cinzel', serif;
 }

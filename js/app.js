@@ -8,6 +8,8 @@ $(document).ready(function() {
   var score = 0;
   var restart = false;
 
+  var level = 1;
+
   $('#container').mousedown(function(){
 
     clearInterval(timeOutMouseUp);
@@ -19,7 +21,9 @@ $(document).ready(function() {
         drawCharacter();
         updateObstacle();
         score++;
+        checkLevel();
         $("#score").html("Score: " + score);
+        $("#level").html("Level: " + level);
 
     }, 5);
 
@@ -35,7 +39,9 @@ $(document).ready(function() {
       drawCharacter();
       updateObstacle();
       score++;
+      checkLevel();
       $("#score").html("Score: " + score);
+      $("#level").html("Level: " + level);
 
     }, 5);
 
@@ -125,6 +131,7 @@ $(document).ready(function() {
       // Reset game
 
       score = 0;
+      level = 1;
 
       helicopter.xPos = 80;
       helicopter.yPos = (board.height / 2) - ($("#character").height() / 2);
@@ -135,6 +142,22 @@ $(document).ready(function() {
     }
 
     restart = false;
+  }
+
+  function checkLevel(){
+
+    if (score < 1000){
+      $("#obstacle").css({"height":"150",
+                          "background-color": "yellow"});
+    } else if (score == 1000) {
+        level++;
+        $("#obstacle").css({"height":"200",
+                          "background-color": "orange"});
+    } else if (score == 2000){
+      level++;
+      $("#obstacle").css({"height":"250",
+                          "background-color": "red"});
+    }
   }
 
     /*
