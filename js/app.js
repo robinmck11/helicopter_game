@@ -95,20 +95,21 @@ $(document).ready(function() {
 
     var leftch = $("#character").offset().left;
     var topch = $("#character").offset().top;
-    var rightch = $("#character").offset().left + $("#character").width();
-    var bottomch = $("#character").offset().top + $("#character").height();
+    var rightch = leftch + $("#character").width();
+    var bottomch = topch + $("#character").height();
 
 
     // Obstacle
 
     var leftob = $("#obstacle").offset().left;
     var topob = $("#obstacle").offset().top;
-    var rightob = $("#obstacle").offset().left + $("#obstacle").width();
-    var bottomob = $("#obstacle").offset().top + $("#obstacle").height();
+    var rightob = leftob + $("#obstacle").width();
+    var bottomob = topob + $("#obstacle").height();
 
 
     if (helicopter.yPos <= 0 || helicopter.yPos >= board.height - $("#character").height()
-        || ( (rightch == leftob) && (bottomch < bottomob) && (topch > topob) )) {
+    || ((rightch >= leftob) && !(leftch >= rightob)) && (((bottomch <= bottomob) && (bottomch >= topob)) || ((topch >= topob) && (topch <= bottomob)))
+    ){
           // restart the game
           restart = true;
           restartGame();
