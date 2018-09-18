@@ -31,6 +31,11 @@ body {
   position:absolute;
 }
 
+#tunnel{
+  width:100px;
+  height:20px;
+}
+
 .btn-container {
   text-align: center;
 }

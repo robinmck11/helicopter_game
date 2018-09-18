@@ -13,6 +13,8 @@ $(document).ready(function() {
 
   var level = 1;
 
+  var tunnelElements = [];
+
   $('#container').mousedown(function(){
 
     clearInterval(timeOutMouseUp);
@@ -78,6 +80,19 @@ $(document).ready(function() {
     // start at half board height
     xPos: 80,
     yPos: (board.height / 2) - ($("#character").height() / 2),
+  }
+
+
+
+  function tunnel(size){
+    $('#parent').append('<div id=\'tunneltop\'></div>');
+    $('#parent').append('<div id=\'tunnelbottom\'></div>');
+
+    // set properties
+  }
+
+  function drawTunnel(){
+
   }
 
   var obstacle = {
