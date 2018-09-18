@@ -5,9 +5,8 @@ $(document).ready(function() {
   var timeOutMouseDown;
   var timeOutMouseUp;
 
-  var count = 0;
   var score = 0;
-  var lost = false;
+  var restart = false;
 
   $('#container').mousedown(function(){
 
@@ -43,6 +42,7 @@ $(document).ready(function() {
     return false;
   });
 
+
   var board = {
     width: $("#container").width(),
     height: $("#container").height(),
@@ -62,7 +62,7 @@ $(document).ready(function() {
 
     xPos : board.width - $("#obstacle").width(),
 
-     yPos : 0,
+    yPos : Math.floor(Math.random() * (board.height - $("#obstacle").height())),
 
   }
 
@@ -79,7 +79,7 @@ $(document).ready(function() {
 
       obstacle.xPos = board.width - $("#obstacle").width(),
 
-      obstacle.yPos = Math.floor(Math.random() * (board.height - $("#obstacle").height()))
+      obstacle.yPos = Math.floor(Math.random() * (board.height - $("#obstacle").height()));
     }
     else{
       // Update position and draw the obstacle
@@ -110,8 +110,30 @@ $(document).ready(function() {
     if (helicopter.yPos <= 0 || helicopter.yPos >= board.height - $("#character").height()
         || ( (rightch == leftob) && (bottomch < bottomob) && (topch > topob) )) {
           // restart the game
+          restart = true;
+          restartGame();
           console.log("COLLIDED");
     }
+  }
+
+  function restartGame(){
+    if (restart == true) {
+      clearInterval(timeOutMouseUp);
+      clearInterval(timeOutMouseDown);
+
+      // Reset game
+
+      score = 0;
+
+      helicopter.xPos = 80;
+      helicopter.yPos = (board.height / 2) - ($("#character").height() / 2);
+
+      obstacle.xPos = board.width - $("#obstacle").width();
+
+       obstacle.yPos = Math.floor(Math.random() * (board.height - $("#obstacle").height()));
+    }
+
+    restart = false;
   }
 
     /*
