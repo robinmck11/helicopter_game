@@ -5,6 +5,9 @@ $(document).ready(function() {
   var timeOutMouseDown;
   var timeOutMouseUp;
 
+  var timeOutAnimateCharacter = setInterval(animateSprite,50);
+  var spriteCounter = 1;
+
   var score = 0;
   var restart = false;
 
@@ -47,6 +50,23 @@ $(document).ready(function() {
 
     return false;
   });
+
+  function animateSprite(){
+    if (restart == true) {
+      clearInterval(timeOutAnimateCharacter);
+    }
+    else {
+        $("#character").attr("src","images/heli-" + spriteCounter + ".png");
+        spriteCounter++;
+        console.log("animated" + spriteCounter);
+      }
+
+
+      if (spriteCounter == 4) {
+        spriteCounter = 1;
+      }
+
+  }
 
 
   var board = {
@@ -119,7 +139,7 @@ $(document).ready(function() {
           // restart the game
           restart = true;
           restartGame();
-          console.log("COLLIDED");
+          // console.log("COLLIDED");
     }
   }
 
@@ -173,8 +193,7 @@ $(document).ready(function() {
 
   drawCharacter();
   drawObstacle();
-
-  // console.log(Math.floor(Math.random() * (board.height - obstacle.height)));
+  animateSprite();
 
 
 });
