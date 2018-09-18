@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   var level = 1;
 
-  var tunnelElements = [];
+  var tunnel = new Tunnel();
 
   $('#container').mousedown(function(){
 
@@ -25,6 +25,7 @@ $(document).ready(function() {
         helicopter.yPos-=2;
         drawCharacter();
         updateObstacle();
+        updateTunnel();
         score++;
         checkLevel();
         $("#score").html("Score: " + score);
@@ -43,6 +44,7 @@ $(document).ready(function() {
       helicopter.yPos+=2;
       drawCharacter();
       updateObstacle();
+      updateTunnel();
       score++;
       checkLevel();
       $("#score").html("Score: " + score);
@@ -84,15 +86,42 @@ $(document).ready(function() {
 
 
 
-  function tunnel(size){
-    $('#parent').append('<div id=\'tunneltop\'></div>');
-    $('#parent').append('<div id=\'tunnelbottom\'></div>');
+  function Tunnel(){
+
+    $('#container').append('<div id=\'tunnelTop\'></div>');
+    $('#container').append('<div id=\'tunnelBottom\'></div>');
+
+    this.topHeight = $("#tunnelTop").height();
+    this.bottomHeight = $("#tunnelBottom").height();
+
+    this.topWidth = $("#tunnelTop").width();
+    this.bottomWidth = $("#tunnelBottom").width();
 
     // set properties
   }
 
   function drawTunnel(){
 
+    // draw all tops and bottoms
+
+    $("#tunnelTop").css({"left": 0 + "px",
+                        "top": 0 + "px",
+                        "width": tunnel.topWidth + "px"
+                      });
+
+    $("#tunnelBottom").css({"left": 0 + "px",
+                        "top": board.height - tunnel.bottomHeight + "px",
+                        "width": tunnel.bottomWidth + "px"
+                      });
+
+  }
+
+  function updateTunnel(){
+
+    tunnel.topWidth--;
+    tunnel.bottomWidth--;
+
+    drawTunnel();
   }
 
   var obstacle = {
@@ -217,6 +246,7 @@ $(document).ready(function() {
       });
     }
 
+  drawTunnel();
   drawCharacter();
   drawObstacle();
   animateSprite();

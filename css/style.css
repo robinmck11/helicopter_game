@@ -31,9 +31,18 @@ body {
   position:absolute;
 }
 
-#tunnel{
-  width:100px;
-  height:20px;
+#tunnelTop{
+  width:700px;
+  height:50px;
+  background-color: lime;
+  position: absolute;
+}
+
+#tunnelBottom{
+  width:500px;
+  height:50px;
+  background-color: lime;
+  position: absolute;
 }
 
 .btn-container {
