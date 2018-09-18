@@ -17,11 +17,11 @@ body {
 }
 
 #character {
-  height:60px;
-  width:60px;
-  background: lime;
   border-radius: 50%;
   position: absolute;
+
+  max-width:150px;
+  max-height:150px;
 }
 
 #obstacle{
