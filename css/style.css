@@ -19,7 +19,7 @@ body {
 #character {
   border-radius: 50%;
   position: absolute;
-
+  z-index:1;
   max-width:150px;
   max-height:150px;
 }
@@ -28,19 +28,20 @@ body {
   height:150px;
   width:20px;
   background-color: lime;
+  z-index:1;
   position:absolute;
 }
 
 #tunnelTop{
-  width:700px;
-  height:50px;
+  width:20px;
+  height:80px;
   background-color: lime;
   position: absolute;
 }
 
 #tunnelBottom{
-  width:500px;
-  height:50px;
+  width:20px;
+  height:80px;
   background-color: lime;
   position: absolute;
 }
@@ -52,4 +53,9 @@ body {
 h1, h2{
   color:white;
   font-family: 'Cinzel', serif;
+}
+
+h2{
+  display:inline;
+  padding-left:10px;
 }

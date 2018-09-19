@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   var level = 1;
 
-  var tunnel = new Tunnel();
+  var tunnel;
 
   $('#container').mousedown(function(){
 
@@ -22,35 +22,69 @@ $(document).ready(function() {
     timeOutMouseDown = setInterval(function(){
 
         colider();
-        helicopter.yPos-=2;
+
+        if (level == 3){
+          helicopter.yPos-=3;
+        } else{
+          helicopter.yPos-=2;
+        }
+
+
         drawCharacter();
         updateObstacle();
-        updateTunnel();
+
+        // if tunnel exists
+
+        if (tunnelExists()){
+          drawTunnel();
+          checkTunnel();
+        } else {
+          tunnel = new Tunnel();
+        }
+
+
         score++;
         checkLevel();
         $("#score").html("Score: " + score);
         $("#level").html("Level: " + level);
 
-    }, 5);
+    }, 10);
 
     return false;
   });
 
   $('#container').mouseup(function(){
+
     clearInterval(timeOutMouseDown);
 
     timeOutMouseUp = setInterval(function(){
       colider();
-      helicopter.yPos+=2;
+
+      if (level == 3){
+        helicopter.yPos+=3;
+      } else{
+        helicopter.yPos+=2;
+      }
+
       drawCharacter();
       updateObstacle();
-      updateTunnel();
+
+      // if tunnel exists
+
+      if (tunnelExists()){
+        drawTunnel();
+        checkTunnel();
+      }
+      else {
+        tunnel = new Tunnel();
+      }
+
       score++;
       checkLevel();
       $("#score").html("Score: " + score);
       $("#level").html("Level: " + level);
 
-    }, 5);
+    }, 10);
 
     return false;
   });
@@ -97,31 +131,58 @@ $(document).ready(function() {
     this.topWidth = $("#tunnelTop").width();
     this.bottomWidth = $("#tunnelBottom").width();
 
+
+    this.topHeight = $("#tunnelTop").width();
+    this.bottomHeight = $("#tunnelBottom").height();
+
+    // board widths and heights are hardcoded.
+
+    this.topxPos = 700 - $("#tunnelTop").width();
+
+    this.topyPos = 0;
+
+    this.bottomxPos = 700 - $("#tunnelBottom").width();
+    this.bottomyPos = 500 - $("#tunnelBottom").height();
+
+
     // set properties
   }
 
   function drawTunnel(){
 
-    // draw all tops and bottoms
+    // draw top and bottom
 
-    $("#tunnelTop").css({"left": 0 + "px",
-                        "top": 0 + "px",
-                        "width": tunnel.topWidth + "px"
+    $("#tunnelTop").css({"left": tunnel.topxPos + "px",
+                        "top": tunnel.topyPos + "px",
                       });
 
-    $("#tunnelBottom").css({"left": 0 + "px",
-                        "top": board.height - tunnel.bottomHeight + "px",
-                        "width": tunnel.bottomWidth + "px"
+    $("#tunnelBottom").css({"left": tunnel.bottomxPos + "px",
+                        "top": tunnel.bottomyPos + "px",
                       });
+
+    tunnel.topxPos--;
+    tunnel.bottomxPos--;
 
   }
 
-  function updateTunnel(){
+  function checkTunnel(){
+    if (tunnel.topxPos <= 0) {
+      $("#tunnelTop").hide();
+      $("#tunnelTop").remove();
+    }
 
-    tunnel.topWidth--;
-    tunnel.bottomWidth--;
+    if(tunnel.bottomxPos <= 0){
+      $("#tunnelBottom").hide();
+      $("#tunnelBottom").remove();
+    }
+  }
 
-    drawTunnel();
+  function tunnelExists(){
+    if (!($("#tunnelTop").length === 0 && $("#tunnelBottom").length == 0)){
+      return true;
+    }
+
+    return false;
   }
 
   var obstacle = {
@@ -194,8 +255,9 @@ $(document).ready(function() {
           // restart the game
           restart = true;
           restartGame();
-          // console.log("COLLIDED");
     }
+
+
   }
 
   function restartGame(){
@@ -205,7 +267,7 @@ $(document).ready(function() {
 
       // Reset game
 
-      score = 0;
+      score = -1;
       level = 1;
 
       helicopter.xPos = 80;
@@ -214,6 +276,9 @@ $(document).ready(function() {
       obstacle.xPos = board.width - $("#obstacle").width();
 
        obstacle.yPos = Math.floor(Math.random() * (board.height - $("#obstacle").height()));
+
+       $("#tunnelTop").remove();
+       $("#tunnelBottom").remove();
     }
 
     restart = false;
@@ -246,7 +311,7 @@ $(document).ready(function() {
       });
     }
 
-  drawTunnel();
+  //drawTunnel();
   drawCharacter();
   drawObstacle();
   animateSprite();
