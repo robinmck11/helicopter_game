@@ -10,13 +10,13 @@ The game is based on what is considered to be one of the first and most addictin
 
 ## Tasks (In no particular order)
 
-1. Score System
-2. Leaderboard
-3. Obstacles moving towards the character
-4. Character
-..* Animate
-..* Movement up and down when events triggered
-5. Levels
+* Score System
+* Leaderboard
+* Obstacles moving towards the character
+* Character
+* Animate
+* Movement up and down when events triggered
+* Levels
 ..*Level 1 - Standard difficulty
 ..*Level 2 - Medium difficulty - Increase height and speed of obstacle. Change colour of obstacle
 ..*Level 3 - Hardest difficulty - Increase height and speed of obstacle. Increase speed of character. Change colour of obstacle.
