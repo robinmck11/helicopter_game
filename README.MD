@@ -21,4 +21,3 @@ The game is based on what is considered to be one of the first and most addictin
   * Level 2 - Medium difficulty - Increase height and speed of obstacle. Change colour of obstacle
   * Level 3 - Hardest difficulty - Increase height and speed of obstacle. Increase speed of character. Change colour of obstacle.
 
-## Development Log
