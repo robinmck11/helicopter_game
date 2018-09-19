@@ -130,21 +130,19 @@ $(document).ready(function() {
     this.topHeight = $("#tunnelTop").height();
     this.bottomHeight = $("#tunnelBottom").height();
 
-    this.topWidth = $("#tunnelTop").width();
-    this.bottomWidth = $("#tunnelBottom").width();
+    this.topWidth = Math.floor((Math.random() * 200) + 1);
+    this.bottomWidth = Math.floor((Math.random() * 200) + 1);
 
-
-    this.topHeight = $("#tunnelTop").width();
-    this.bottomHeight = $("#tunnelBottom").height();
-
-    // board widths and heights are hardcoded.
+    this.topHeight = Math.floor((Math.random() * 70) + 1);
+    this.bottomHeight = this.topHeight;
 
     this.topxPos = 700 - $("#tunnelTop").width();
 
     this.topyPos = 0;
 
     this.bottomxPos = 700 - $("#tunnelBottom").width();
-    this.bottomyPos = 500 - $("#tunnelBottom").height();
+    this.bottomyPos = 500 - this.bottomHeight;
+
 
 
     // set properties
@@ -156,18 +154,23 @@ $(document).ready(function() {
 
     $("#tunnelTop").css({"left": tunnel.topxPos + "px",
                         "top": tunnel.topyPos + "px",
+                        "width": tunnel.topWidth + "px",
+                        "height": tunnel.topHeight + "px",
                       });
 
     $("#tunnelBottom").css({"left": tunnel.bottomxPos + "px",
                         "top": tunnel.bottomyPos + "px",
+                        "width": tunnel.bottomWidth + "px",
+                        "height": tunnel.bottomHeight + "px",
                       });
 
-    tunnel.topxPos--;
-    tunnel.bottomxPos--;
+    tunnel.topxPos-=2;
+    tunnel.bottomxPos-=2;
 
   }
 
   function checkTunnel(){
+
     if (tunnel.topxPos <= 0) {
       $("#tunnelTop").hide();
       $("#tunnelTop").remove();
@@ -217,7 +220,7 @@ $(document).ready(function() {
       // Update position and draw the obstacle
       switch (level) {
         case 1:
-          obstacle.xPos-=2;
+          obstacle.xPos-=3;
           break;
         case 2:
           obstacle.xPos-=3;

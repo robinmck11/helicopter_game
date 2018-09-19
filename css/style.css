@@ -35,14 +35,14 @@ body {
 #tunnelTop{
   width:20px;
   height:80px;
-  background-color: lime;
+  background-color: #364859;
   position: absolute;
 }
 
 #tunnelBottom{
   width:20px;
   height:80px;
-  background-color: lime;
+  background-color: #364859;
   position: absolute;
 }
 
