@@ -14,6 +14,11 @@ The game is based on what is considered to be one of the first and most addictin
 2. Leaderboard
 3. Obstacles moving towards the character
 4. Character
-5. Multiple levels
+..* Animate
+..* Movement up and down when events triggered
+5. Levels
+..*Level 1 - Standard difficulty
+..*Level 2 - Medium difficulty - Increase height and speed of obstacle. Change colour of obstacle
+..*Level 3 - Hardest difficulty - Increase height and speed of obstacle. Increase speed of character. Change colour of obstacle.
 
 ## Development Log
