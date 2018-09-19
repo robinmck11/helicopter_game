@@ -20,14 +20,14 @@ body {
   border-radius: 50%;
   position: absolute;
   z-index:1;
-  max-width:150px;
-  max-height:150px;
+  max-width:110px;
+  max-height:110px;
 }
 
 #obstacle{
   height:150px;
   width:20px;
-  background-color: lime;
+  background-color: yellow;
   z-index:1;
   position:absolute;
 }

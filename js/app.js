@@ -259,6 +259,39 @@ $(document).ready(function() {
           restartGame();
     }
 
+    if (tunnelExists()) {
+      // Check for top tunnel collisions
+
+      var lefttt = $("#tunnelTop").offset().left;
+      var toptt = $("#tunnelTop").offset().top;
+      var righttt = lefttt + $("#tunnelTop").width();
+      var bottomtt = toptt + $("#tunnelTop").height();
+
+      if (((rightch >= lefttt) && !(leftch >= righttt)) && (((bottomch <= bottomtt) && (bottomch >= toptt)) || ((topch >= toptt) && (topch <= bottomtt)))
+      ){
+            // restart the game
+            restart = true;
+            restartGame();
+      }
+
+      // Check for bottom tunnel collisions
+
+      var leftbt = $("#tunnelBottom").offset().left;
+      var topbt = $("#tunnelBottom").offset().top;
+      var rightbt = leftbt + $("#tunnelBottom").width();
+      var bottombt = topbt + $("#tunnelBottom").height();
+
+      if (((rightch >= leftbt) && !(leftch >= rightbt)) && (((bottomch <= bottombt) && (bottomch >= topbt)) || ((topch >= topbt) && (topch <= bottombt)))
+      ){
+            // restart the game
+            restart = true;
+            restartGame();
+      }
+
+    }
+
+
+
 
   }
 
