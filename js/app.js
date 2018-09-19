@@ -17,11 +17,16 @@ $(document).ready(function() {
 
   var tunnel;
 
+  heliSound = new sound("sound/helicopter-hovering-01.mp3");
+  crashSound = new sound("sound/explosion.mp3");
+
   $('#container').mousedown(function(){
 
     clearInterval(timeOutMouseUp);
 
     timeOutMouseDown = setInterval(function(){
+
+      heliSound.play();
 
         colider();
 
@@ -130,8 +135,8 @@ $(document).ready(function() {
     this.topHeight = $("#tunnelTop").height();
     this.bottomHeight = $("#tunnelBottom").height();
 
-    this.topWidth = Math.floor((Math.random() * 200) + 1);
-    this.bottomWidth = Math.floor((Math.random() * 200) + 1);
+    this.topWidth = Math.floor((Math.random() * 300) + 20);
+    this.bottomWidth = Math.floor((Math.random() * 300) + 20);
 
     this.topHeight = Math.floor((Math.random() * 70) + 1);
     this.bottomHeight = this.topHeight;
@@ -259,6 +264,8 @@ $(document).ready(function() {
     ){
           // restart the game
           restart = true;
+          heliSound.stop();
+          crashSound.play();
           restartGame();
     }
 
@@ -274,6 +281,8 @@ $(document).ready(function() {
       ){
             // restart the game
             restart = true;
+            heliSound.stop();
+            crashSound.play();
             restartGame();
       }
 
@@ -288,6 +297,8 @@ $(document).ready(function() {
       ){
             // restart the game
             restart = true;
+            heliSound.stop();
+            crashSound.play();
             restartGame();
       }
 
@@ -360,6 +371,21 @@ $(document).ready(function() {
   drawCharacter();
   drawObstacle();
   animateSprite();
+
+  function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
+}
 
 
 });
