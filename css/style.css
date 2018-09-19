@@ -50,9 +50,13 @@ body {
   text-align: center;
 }
 
-h1, h2{
+h1, h2, h3, p{
   color:white;
   font-family: 'Cinzel', serif;
+}
+
+p{
+  font-family:sans-serif;
 }
 
 h2{
