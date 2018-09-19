@@ -9,6 +9,8 @@ $(document).ready(function() {
   var spriteCounter = 1;
 
   var score = 0;
+  var best = 0;
+
   var restart = false;
 
   var level = 1;
@@ -265,7 +267,14 @@ $(document).ready(function() {
       clearInterval(timeOutMouseUp);
       clearInterval(timeOutMouseDown);
 
+      // set best score
+
+      if (score > best) {
+          best = score;
+          $("#best").html("Best: " + best);
+      }
       // Reset game
+
 
       score = -1;
       level = 1;
