@@ -233,6 +233,8 @@ $(document).ready(function() {
         case 3:
           obstacle.xPos-=4;
           break;
+        case 4:
+          obstacle.xPos-=5;
         default:
 
       }
@@ -345,15 +347,21 @@ $(document).ready(function() {
     if (score < 1000){
       $("#obstacle").css({"height":"150",
                           "background-color": "yellow"});
-    } else if (score == 1000) {
+    } else if (score == 2000) {
         level++;
         $("#obstacle").css({"height":"200",
                           "background-color": "orange"});
-    } else if (score == 2000){
+    } else if (score == 3000){
       level++;
       $("#obstacle").css({"height":"250",
                           "background-color": "red"});
     }
+      else if (score == 4000) {
+        level++;
+        $("#obstacle").css({
+                          "background-color" : "pink",
+                          })
+      }
   }
 
     /*
