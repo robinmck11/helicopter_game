@@ -1,5 +1,7 @@
 # Helicopter Game
 
+[Play here!](https://robinmck11.github.io/helicopter_game/index.html)
+
 ## About
 The game is based on what is considered to be one of the first and most addicting flash games on the internet. The aim is simple, to survive for as long as possible by avoiding obstacles.
 
