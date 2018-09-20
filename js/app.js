@@ -35,10 +35,7 @@ function playGame(){
 
         if (level == 3){
           helicopter.yPos-=3;
-        }else if (level == 4) {
-          helicoptere.yPos-=3;
-        }
-        else{
+        }else{
           helicopter.yPos-=2;
         }
 
@@ -75,7 +72,8 @@ function playGame(){
 
       if (level == 3){
         helicopter.yPos+=3;
-      } else{
+      }
+      else{
         helicopter.yPos+=2;
       }
 
@@ -423,7 +421,7 @@ $("#start").click(function(){
 function startButton(){
   $("#start").css({
                   "left": board.width / 2 - ($("#start").width() / 2)+ "px",
-                  "top": board.height / 2 + "px",
+                  "top": board.height / 2 - ($("#start").height() / 2) + "px",
                   })
 }
 

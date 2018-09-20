@@ -34,7 +34,12 @@ body {
 
 #start{
   position:absolute;
-  width:100px;
+  width:200px;
+  height:40px;
+  background-color: #364859;
+  color:white;
+  font-size:22px;
+  border-radius:5px;
 }
 
 #tunnelTop{
