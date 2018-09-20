@@ -34,6 +34,4 @@ Screen shot showing an ongoing game.
 
 ### MouseDown and MouseUp Event Handlers
 
-The issue was that the game would restart on mouseUp. This was due to the mouseDown Event being active when a collision was detected. The solution was to call the jquery function off() to remove the event handler.
-
-### Collision logic
+The issue was that the game would restart on mouseUp. This was due to the mouseDown Event being active when a collision was detected. The solution was to call the jquery function off() to remove the event handler. The event handler was re-added when the start button was again pressed.
