@@ -35,7 +35,10 @@ function playGame(){
 
         if (level == 3){
           helicopter.yPos-=3;
-        } else{
+        }else if (level == 4) {
+          helicoptere.yPos-=3;
+        }
+        else{
           helicopter.yPos-=2;
         }
 
