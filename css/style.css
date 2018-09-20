@@ -32,6 +32,11 @@ body {
   position:absolute;
 }
 
+#start{
+  position:absolute;
+  width:100px;
+}
+
 #tunnelTop{
   width:20px;
   height:80px;

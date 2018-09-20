@@ -20,6 +20,9 @@ $(document).ready(function() {
   heliSound = new sound("sound/helicopter-hovering-01.mp3");
   crashSound = new sound("sound/explosion.mp3");
 
+
+function playGame(){
+
   $('#container').mousedown(function(){
 
     clearInterval(timeOutMouseUp);
@@ -92,11 +95,13 @@ $(document).ready(function() {
       $("#level").html("Level: " + level);
 
     }, 10);
-
     return false;
   });
 
-  function animateSprite(){
+
+}
+
+function animateSprite(){
     if (restart == true) {
       clearInterval(timeOutAnimateCharacter);
     }
@@ -113,13 +118,13 @@ $(document).ready(function() {
   }
 
 
-  var board = {
+var board = {
     width: $("#container").width(),
     height: $("#container").height(),
     left: $("#container").offset().left,
   }
 
-  var helicopter = {
+var helicopter = {
     // start at half board height
     xPos: 80,
     yPos: (board.height / 2) - ($("#character").height() / 2),
@@ -127,7 +132,7 @@ $(document).ready(function() {
 
 
 
-  function Tunnel(){
+function Tunnel(){
 
     $('#container').append('<div id=\'tunnelTop\'></div>');
     $('#container').append('<div id=\'tunnelBottom\'></div>');
@@ -153,7 +158,7 @@ $(document).ready(function() {
     // set properties
   }
 
-  function drawTunnel(){
+function drawTunnel(){
 
     // draw top and bottom
 
@@ -174,7 +179,7 @@ $(document).ready(function() {
 
   }
 
-  function checkTunnel(){
+function checkTunnel(){
 
     if (tunnel.topxPos <= 0) {
       $("#tunnelTop").hide();
@@ -187,7 +192,7 @@ $(document).ready(function() {
     }
   }
 
-  function tunnelExists(){
+function tunnelExists(){
     if (!($("#tunnelTop").length === 0 && $("#tunnelBottom").length == 0)){
       return true;
     }
@@ -195,7 +200,7 @@ $(document).ready(function() {
     return false;
   }
 
-  var obstacle = {
+var obstacle = {
 
     width : $("#obstacle").width(),
     height : $("#obstacle").height(),
@@ -206,13 +211,13 @@ $(document).ready(function() {
 
   }
 
-  function drawObstacle(){
+function drawObstacle(){
     $("#obstacle").css({"left": obstacle.xPos + "px",
                         "top": obstacle.yPos + "px"
                       });
   }
 
-  function updateObstacle(){
+function updateObstacle(){
 
     if (obstacle.xPos <= 0) {
       // reset position of obstacle
@@ -243,7 +248,7 @@ $(document).ready(function() {
     }
   }
 
-  function colider(){
+function colider(){
 
     // Character
 
@@ -306,15 +311,15 @@ $(document).ready(function() {
 
     }
 
-
-
-
   }
 
-  function restartGame(){
+function restartGame(){
     if (restart == true) {
-      clearInterval(timeOutMouseUp);
       clearInterval(timeOutMouseDown);
+      clearInterval(timeOutMouseUp);
+
+      $('#container').off("mousedown");
+      $('#container').off("mouseup");
 
       // set best score
 
@@ -323,7 +328,6 @@ $(document).ready(function() {
           $("#best").html("Best: " + best);
       }
       // Reset game
-
 
       score = -1;
       level = 1;
@@ -340,9 +344,12 @@ $(document).ready(function() {
     }
 
     restart = false;
+
+    // reshow start button
+    $("#start").show();
   }
 
-  function checkLevel(){
+function checkLevel(){
 
     if (score < 1000){
       $("#obstacle").css({"height":"150",
@@ -368,19 +375,14 @@ $(document).ready(function() {
       Draws the character
     */
 
-  function drawCharacter(){
+function drawCharacter(){
       $("#character").css({
         "left": helicopter.xPos + "px",
         "top": helicopter.yPos + "px"
       });
     }
 
-  //drawTunnel();
-  drawCharacter();
-  drawObstacle();
-  animateSprite();
-
-  function sound(src) {
+function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
     this.sound.setAttribute("controls", "none");
@@ -393,6 +395,33 @@ $(document).ready(function() {
     this.stop = function(){
         this.sound.pause();
     }
+  }
+
+//drawTunnel();
+drawCharacter();
+drawObstacle();
+animateSprite();
+
+// set position of button.
+
+startButton();
+
+// call playgame when start button is clicked.
+
+$("#start").click(function(){
+
+  // Start play Game
+  playGame();
+
+  // Hide the start button
+  $("#start").hide();
+});
+
+function startButton(){
+  $("#start").css({
+                  "left": board.width / 2 - ($("#start").width() / 2)+ "px",
+                  "top": board.height / 2 + "px",
+                  })
 }
 
 
