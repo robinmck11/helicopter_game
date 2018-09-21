@@ -14,6 +14,7 @@ body {
   border-top:50px solid #73F440;
   border-bottom:50px solid #73F440;
   position: relative;
+  cursor: n-resize;
 }
 
 #character {
