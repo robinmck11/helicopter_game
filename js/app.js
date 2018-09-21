@@ -155,7 +155,6 @@ function Tunnel(){
     this.bottomyPos = 500 - this.bottomHeight;
 
 
-
     // set properties
   }
 
@@ -340,8 +339,11 @@ function restartGame(){
 
        obstacle.yPos = Math.floor(Math.random() * (board.height - $("#obstacle").height()));
 
-       $("#tunnelTop").remove();
-       $("#tunnelBottom").remove();
+       drawTunnel();
+
+       // $("#tunnelTop").remove();
+       // $("#tunnelBottom").remove();
+
     }
 
     restart = false;
