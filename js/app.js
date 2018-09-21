@@ -75,7 +75,7 @@ function playGame(){
       colider();
 
       if (level == 4) {
-        helicopter.yPos+=4;
+        helicopter.yPos+=3;
       }
 
       if (level == 3){
